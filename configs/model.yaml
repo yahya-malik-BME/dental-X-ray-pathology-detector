@@ -1,0 +1,24 @@
+# Model configuration
+model:
+  # Detection model (primary)
+  detection:
+    name: "yolov8"
+    variant: "yolov8m"          # n=nano, s=small, m=medium, l=large, x=xlarge
+    pretrained: true             # Start from COCO pretrained weights
+    pretrained_weights: "yolov8m.pt"
+    num_classes: 5
+    conf_threshold: 0.25         # Confidence threshold for inference
+    iou_threshold: 0.45          # NMS IoU threshold
+    max_detections: 300
+
+  # Classification model (secondary / pathology grading)
+  classification:
+    name: "efficientnet_b3"
+    pretrained: true
+    num_classes: 5
+    dropout: 0.3
+    freeze_backbone_epochs: 5   # Freeze backbone for first N epochs
+
+  # Shared settings
+  input_size: 640
+  device: "cuda"                 # "cuda", "mps", or "cpu"

@@ -1,0 +1,33 @@
+# Core deep learning
+torch>=2.2.0
+torchvision>=0.17.0
+torchaudio>=2.2.0
+
+# Detection model
+ultralytics>=8.1.0
+
+# Augmentation
+albumentations>=1.4.0
+opencv-python-headless>=4.9.0
+
+# Experiment tracking
+wandb>=0.16.3
+
+# Demo UI
+gradio>=4.19.2
+
+# Config management
+hydra-core>=1.3.2
+omegaconf>=2.3.0
+
+# Data handling
+numpy>=1.26.4
+pandas>=2.2.0
+Pillow>=10.2.0
+pycocotools>=2.0.7
+pydantic>=2.6.1
+
+# Visualization
+matplotlib>=3.8.3
+seaborn>=0.13.2
+scikit-learn>=1.4.0

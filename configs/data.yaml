@@ -1,0 +1,50 @@
+# Dataset configuration
+dataset:
+  name: "DENTEX"
+  version: "1.0"
+  root: "data/"
+
+  # Paths relative to root
+  paths:
+    raw: "data/raw/"
+    processed: "data/processed/"
+    annotations: "data/annotations/"
+    augmented: "data/augmented/"
+
+  # Image settings
+  image:
+    size: 640          # YOLOv8 default input size (square)
+    channels: 3        # Convert grayscale X-rays to 3-channel
+    normalize_mean: [0.485, 0.456, 0.406]   # ImageNet stats as starting point
+    normalize_std: [0.229, 0.224, 0.225]
+
+  # Class definitions (DENTEX)
+  num_classes: 5
+  classes:
+    0: "tooth"
+    1: "caries"
+    2: "deep_caries"
+    3: "periapical_lesion"
+    4: "impacted_tooth"
+
+  # Class weights for imbalanced data (adjust after EDA)
+  class_weights:
+    tooth: 1.0
+    caries: 2.5
+    deep_caries: 3.0
+    periapical_lesion: 3.0
+    impacted_tooth: 2.0
+
+  # Train/val/test split
+  splits:
+    train: 0.70
+    val: 0.15
+    test: 0.15
+    seed: 42
+
+  # DataLoader settings
+  dataloader:
+    batch_size: 16
+    num_workers: 4
+    pin_memory: true
+    prefetch_factor: 2

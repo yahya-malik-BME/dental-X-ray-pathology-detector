@@ -1,0 +1,54 @@
+# Training configuration
+training:
+  # General
+  project_name: "dental-xray-pathology-detector"
+  experiment_name: "yolov8m-dentex-baseline"
+  seed: 42
+  device: "cuda"
+
+  # Epochs and checkpointing
+  epochs: 100
+  patience: 15                   # Early stopping patience
+  save_period: 10                # Save checkpoint every N epochs
+  save_best_only: true
+
+  # Optimizer
+  optimizer:
+    name: "AdamW"
+    lr: 0.001
+    weight_decay: 0.0005
+    momentum: 0.937              # Used if optimizer is SGD
+
+  # Learning rate scheduler
+  scheduler:
+    name: "cosine"               # "cosine", "step", "plateau"
+    warmup_epochs: 3
+    warmup_momentum: 0.8
+    min_lr: 1.0e-6
+
+  # Loss weights (YOLOv8 multi-task loss)
+  loss:
+    box: 7.5                     # Bounding box regression loss weight
+    cls: 0.5                     # Classification loss weight
+    dfl: 1.5                     # Distribution focal loss weight
+
+  # Augmentation (applied during training only)
+  augmentation:
+    enabled: true
+    config: "configs/augment.yaml"
+
+  # Paths
+  output_dir: "outputs/"
+  weights_dir: "outputs/weights/"
+
+  # Weights & Biases logging
+  wandb:
+    enabled: true
+    project: "dental-xray-cv"
+    entity: null                 # Set to your W&B username
+    log_images: true
+    log_freq: 10                 # Log sample predictions every N epochs
+
+  # Validation
+  val_during_training: true
+  val_frequency: 1              # Validate every N epochs

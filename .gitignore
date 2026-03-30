@@ -1,0 +1,54 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+*.egg
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Data — never commit raw data
+data/raw/
+data/processed/
+data/augmented/
+data/annotations/
+
+# Model weights (large files — use W&B or HF Hub)
+outputs/weights/*.pt
+outputs/weights/*.pth
+outputs/weights/*.ckpt
+
+# Outputs
+outputs/predictions/
+outputs/reports/
+
+# Experiment tracking
+wandb/
+*.log
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+.env
+*.env
+secrets.yaml

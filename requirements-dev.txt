@@ -1,0 +1,15 @@
+-r requirements.txt
+
+# Testing
+pytest==8.0.2
+pytest-cov==4.1.0
+
+# Linting and formatting
+ruff==0.3.0
+black==24.2.0
+mypy==1.8.0
+isort==5.13.2
+
+# Notebook
+jupyterlab==4.1.2
+ipywidgets==8.1.2
