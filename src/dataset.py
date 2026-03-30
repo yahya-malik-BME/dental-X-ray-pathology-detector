@@ -265,8 +265,7 @@ def create_dataloaders(
 
     if not image_dir.exists():
         raise FileNotFoundError(
-            f"Image directory not found: {image_dir}\n"
-            f"Place processed images in {image_dir}"
+            f"Image directory not found: {image_dir}\n" f"Place processed images in {image_dir}"
         )
 
     # Discover all images
@@ -294,11 +293,17 @@ def create_dataloaders(
     splits_dir.mkdir(parents=True, exist_ok=True)
     for name, files in [("train", train_files), ("val", val_files), ("test", test_files)]:
         (splits_dir / f"{name}.txt").write_text("\n".join(files))
-    logger.info(f"Split sizes — train: {len(train_files)}, val: {len(val_files)}, test: {len(test_files)}")
+    logger.info(
+        f"Split sizes — train: {len(train_files)}, val: {len(val_files)}, test: {len(test_files)}"
+    )
 
     # Create subset datasets using symlinks or by passing file lists
     # We'll create temp directories with symlinks for each split
-    for split_name, split_files in [("train", train_files), ("val", val_files), ("test", test_files)]:
+    for split_name, split_files in [
+        ("train", train_files),
+        ("val", val_files),
+        ("test", test_files),
+    ]:
         split_img_dir = data_root / "processed" / split_name
         split_lbl_dir = data_root / "annotations" / split_name
         split_img_dir.mkdir(parents=True, exist_ok=True)
@@ -457,10 +462,14 @@ class DENTEXDownloader:
         ann_dir = self.root / "annotations"
 
         if not raw_dir.exists() or not ann_dir.exists():
-            logger.error(f"Missing directories: raw={raw_dir.exists()}, annotations={ann_dir.exists()}")
+            logger.error(
+                f"Missing directories: raw={raw_dir.exists()}, annotations={ann_dir.exists()}"
+            )
             return False
 
-        images = [p.stem for p in raw_dir.iterdir() if p.suffix.lower() in (".jpg", ".jpeg", ".png")]
+        images = [
+            p.stem for p in raw_dir.iterdir() if p.suffix.lower() in (".jpg", ".jpeg", ".png")
+        ]
         labels = [p.stem for p in ann_dir.iterdir() if p.suffix == ".txt"]
 
         missing = set(images) - set(labels)
