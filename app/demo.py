@@ -15,7 +15,7 @@ from PIL import Image
 # Add project root to path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 
-from src.evaluate import CLASS_COLORS, visualize_predictions
+from src.evaluate import CLASS_COLORS
 from src.predict import InferenceConfig, Predictor
 
 # ── Constants ──────────────────────────────────────────────────────────────
@@ -79,7 +79,6 @@ def run_inference(image: np.ndarray) -> tuple[np.ndarray, str]:
     if image is None:
         return None, "Please upload an X-ray image."
 
-    import cv2
 
     # Save temp file for predictor (predictor expects a file path)
     with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as f:

@@ -1,7 +1,6 @@
 """Tests for src/predict.py"""
 from __future__ import annotations
 
-from pathlib import Path
 from unittest.mock import MagicMock, patch
 
 import numpy as np
@@ -22,8 +21,8 @@ class TestPredictor:
         """Test preprocessing without needing model weights."""
         import cv2
 
-        with patch("src.predict.DentalDetectionModel") as MockModel:
-            MockModel.return_value = MagicMock()
+        with patch("src.predict.DentalDetectionModel") as mock_model:
+            mock_model.return_value = MagicMock()
             weights = tmp_path / "dummy.pt"
             weights.touch()
 

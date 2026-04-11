@@ -114,7 +114,11 @@ class Predictor:
             "pathology_summary": summary,
         }
 
-        should_save = save_visualization if save_visualization is not None else self.config.save_visualizations
+        should_save = (
+            save_visualization
+            if save_visualization is not None
+            else self.config.save_visualizations
+        )
         if should_save:
             from src.evaluate import visualize_predictions
 

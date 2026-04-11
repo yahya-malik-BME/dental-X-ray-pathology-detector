@@ -94,7 +94,7 @@ def _build_single_transform(aug_def: DictConfig) -> A.BasicTransform | None:
 
     try:
         return cls(**params)
-    except TypeError as e:
+    except (TypeError, ValueError) as e:
         logger.warning(f"Failed to build {name} with params {params}: {e}")
         return None
 

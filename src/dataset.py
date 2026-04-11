@@ -173,6 +173,15 @@ class DentalXRayDataset(Dataset):
             w = max(0.0, min(1.0, w))
             h = max(0.0, min(1.0, h))
 
+            # Ensure xyxy stays within [0, 1] after conversion
+            w = min(w, 2 * cx, 2 * (1 - cx))
+            h = min(h, 2 * cy, 2 * (1 - cy))
+
+            # Skip degenerate boxes
+            if w <= 0 or h <= 0:
+                logger.warning(f"Degenerate box at line {line_num} in {label_path}, skipping")
+                continue
+
             boxes.append([cx, cy, w, h])
             class_labels.append(cls_id)
 
